@@ -7,15 +7,17 @@ vim.g.mapleader = ' '
 
 -- Handle clipboard
 if vim.fn.executable("xclip") == 1 then
+    vim.g.clipboard = {
+        name = "xclip",
         copy = {
-            ['+'] = 'xclip -selection primary -in',
-            ['*'] = 'xclip -selection primary -in',
+            ["+"] = "xclip -selection clipboard",
+            ["*"] = "xclip -selection primary"
         },
         paste = {
-            ['+'] = 'xclip -selection primary -out',
-            ['*'] = 'xclip -selection primary -out',
+            ["+"] = "xclip -selection clipboard -o",
+            ["*"] = "xclip -selection primary -o"
         },
-        cache_enabled = 0,
+        cache_enabled = 0
     }
 end
 
