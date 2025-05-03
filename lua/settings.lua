@@ -6,19 +6,19 @@ vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand('/wv/kevche06/bin/nvim_py/bi
 vim.g.mapleader = ' '
 
 -- Handle clipboard
-vim.o.clipboard = 'unnamedplus'
-vim.g.clipboard = {
-    name = 'myClipboard',
-    copy = {
-        ['+'] = 'xclip -selection primary -in',
-        ['*'] = 'xclip -selection primary -in',
-    },
-    paste = {
-        ['+'] = 'xclip -selection primary -out',
-        ['*'] = 'xclip -selection primary -out',
-    },
-    cache_enabled = 0,
-}
+if vim.fn.executable("xclip") == 1 then
+        copy = {
+            ['+'] = 'xclip -selection primary -in',
+            ['*'] = 'xclip -selection primary -in',
+        },
+        paste = {
+            ['+'] = 'xclip -selection primary -out',
+            ['*'] = 'xclip -selection primary -out',
+        },
+        cache_enabled = 0,
+    }
+end
+
 
 vim.o.completeopt = 'menu,menuone,noselect,preview'
 
